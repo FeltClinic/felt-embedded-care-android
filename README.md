@@ -4,6 +4,10 @@ Felt offers a seamless telehealth experience inside health apps. Our platform ha
 ## Getting Started
 The SDK is published on [Maven Central](https://central.sonatype.com/artifact/clinic.felt/embeddedcare).
 
+> These docs describe **1.0.0-beta.6**, the current release on Maven Central. Pin an explicit
+> version rather than tracking the latest: the next release changes how the SDK is initialized and
+> moves several classes into new packages, and this guide will be updated alongside it.
+
 In your build script:
 ```kotlin
 dependencyResolutionManagement {
@@ -34,7 +38,7 @@ class MainActivity: AppCompatActivity() {
 +        EmbeddedCare.shared.scope.launch {
 +            // Error will be thrown for invalid key.
 +            // Ensure that this is only called once per app launch.
-+            EmbeddedCare.shared.initalize(activity, sdkKey = /* your Felt SDK Key */)
++            EmbeddedCare.shared.initialize(activity, sdkKey = /* your Felt SDK Key */)
 +        }
     }
 }
