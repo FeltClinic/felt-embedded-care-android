@@ -4,12 +4,17 @@ Felt offers a seamless telehealth experience inside health apps. Our platform ha
 ## Getting Started
 The SDK is published on [Maven Central](https://central.sonatype.com/artifact/clinic.felt/embeddedcare).
 
+> These docs describe **1.1.0**. If you are upgrading from `1.0.0-beta.6`, initialization has
+> changed and several classes have moved packages — see [Upgrading from 1.0.0-beta.6](#upgrading-from-100-beta6).
+> Pin an explicit version rather than tracking the latest.
+
 In your build script:
 ```kotlin
 dependencyResolutionManagement {
     repositories {
-        // Make sure Maven Central is added as a repository
         mavenCentral()
+        // Statsig, a transitive dependency, publishes to JitPack rather than Maven Central.
+        maven("https://jitpack.io")
     }
 }
 
@@ -19,7 +24,7 @@ dependencies {
 }
 ```
 
-At app launch, initialize the SDK with your SDK key using [`EmbeddedCare.shared.initialize`](https://www.javadoc.io/doc/clinic.felt/embeddedcare/latest/clinic/felt/embeddedcare/EmbeddedCare.html#initialize(AppCompatActivity,String)). For example, the implementation could look like:
+At app launch, prepare the activity and initialize the SDK with your SDK key.
 
 ```diff
 + import clinic.felt.embeddedcare.EmbeddedCare
@@ -30,22 +35,37 @@ class MainActivity: AppCompatActivity() {
 
         // other initialization logic
 
-+        val activity = this
-+        EmbeddedCare.shared.scope.launch {
-+            // Error will be thrown for invalid key.
-+            // Ensure that this is only called once per app launch.
-+            EmbeddedCare.shared.initalize(activity, sdkKey = /* your Felt SDK Key */)
++        // Registers the runtime push-permission launcher. Must run in onCreate:
++        // registerForActivityResult throws once the activity reaches STARTED.
++        EmbeddedCare.prepareActivity(this)
++
++        lifecycleScope.launch {
++            // Error will be thrown for an invalid key.
++            EmbeddedCare.initialize(this@MainActivity, sdkKey = /* your Felt SDK Key */)
 +        }
     }
 }
 ```
 
-Now you can embed care experiences, below are a few examples. 
+Two things there are easy to get wrong:
+
+* **Call `initialize` on the companion, not on `.shared`.** `EmbeddedCare.shared` throws
+  `IllegalStateException` until the first `initialize` completes, so
+  `EmbeddedCare.shared.initialize(...)` cannot work — the receiver throws before the call happens.
+  Guard any early access with `EmbeddedCare.isInstanceInitialized`.
+* **`prepareActivity` must be called from `onCreate`.** It registers an `ActivityResultLauncher`,
+  and `registerForActivityResult` throws if the activity has already reached `STARTED`.
+
+Now you can embed care experiences, below are a few examples.
 See [full documentation](Documentation.md#Component-Experiences) for a complete list of approaches.
 
 ```kotlin
+import clinic.felt.embeddedcare.ComponentExperience
+import clinic.felt.embeddedcare.FullScreenExperience
+import clinic.felt.embeddedcare.features.component.ComponentFragment
+import clinic.felt.embeddedcare.features.fullscreen.FullScreenFragment
 
-// for a modal care experiences
+// for a modal care experience
 EmbeddedCare.shared.presentExperience(FullScreenExperience.ValuePropositionScreen)
 
 // alternatively, FullScreenFragment and FullScreenView offer flexibility to present the experience
@@ -69,10 +89,54 @@ fragmentManager
 
 Finally, you will need to share context with the SDK to have a complete experience. This can be achieved by
 
-* setting account and patient information with [`EmbeddedCare.shared.account`](https://www.javadoc.io/doc/clinic.felt/embeddedcare/latest/clinic/felt/embeddedcare/EmbeddedCare.html#setAccount(Account)) 
-* setting component custom data with [`ComponentFragment.create(..., custom = ...)`](https://www.javadoc.io/doc/clinic.felt/embeddedcare/latest/clinic/felt/embeddedcare/ComponentFragment.Companion.html#create(ComponentExperience,Map))
+* setting account and patient information with `EmbeddedCare.shared.auth.account`
+* setting component custom data with `ComponentFragment.create(..., custom = ...)`
 
 🎉 That's it! By working with Felt, we will populate these views with a customized, white-labeled experience that will delight your users.
+
+## Upgrading from 1.0.0-beta.6
+
+`1.0.0-beta.6` was published in January 2025 and this release lands everything since. Three changes
+require edits to an existing integration.
+
+**Initialization moved to the companion.**
+
+```diff
+- EmbeddedCare.shared.scope.launch {
+-     EmbeddedCare.shared.initialize(activity, sdkKey)
+- }
++ EmbeddedCare.prepareActivity(activity)
++ lifecycleScope.launch {
++     EmbeddedCare.initialize(activity, sdkKey)
++ }
+```
+
+**The account moved behind `auth`.**
+
+```diff
+- EmbeddedCare.shared.account = Account(id = user.id, email = user.email)
++ EmbeddedCare.shared.auth.account = Account(id = user.id, email = user.email)
+```
+
+**Several classes moved packages.**
+
+| Was | Now |
+|---|---|
+| `clinic.felt.embeddedcare.Account` | `clinic.felt.embeddedcare.models.Account` |
+| `clinic.felt.embeddedcare.Patient` | `clinic.felt.embeddedcare.models.Patient` |
+| `clinic.felt.embeddedcare.ComponentFragment` | `clinic.felt.embeddedcare.features.component.ComponentFragment` |
+| `clinic.felt.embeddedcare.FullScreenFragment` | `clinic.felt.embeddedcare.features.fullscreen.FullScreenFragment` |
+
+`ComponentExperience`, `FullScreenExperience`, `FeatureGate` and `EmbeddedCare` itself are unchanged.
+
+## Requirements
+
+| | |
+|---|---|
+| `minSdk` | 24 (Android 7.0) |
+| Host activity | must be an `AppCompatActivity` — `initialize` and `prepareActivity` require one |
+| Jetpack Compose | required; the SDK ships Compose UI |
+| Repositories | Maven Central **and** JitPack (for Statsig) |
 
 ## Documentation
 You can find further documentation [here](Documentation.md) and api reference documentation [here](https://www.javadoc.io/doc/clinic.felt/embeddedcare/latest/clinic/felt/embeddedcare/package-summary.html).
