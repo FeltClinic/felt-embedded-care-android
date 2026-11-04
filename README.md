@@ -139,7 +139,7 @@ require edits to an existing integration.
 | Repositories | Maven Central **and** JitPack (for Statsig) |
 
 ## Documentation
-You can find further documentation [here](Documentation.md) and api reference documentation [here](https://www.javadoc.io/doc/clinic.felt/embeddedcare/latest/clinic/felt/embeddedcare/package-summary.html).
+You can find further documentation [here](Documentation.md) and the API reference [here](https://feltclinic.github.io/felt-embedded-care-android/).
 
 ## Support
 

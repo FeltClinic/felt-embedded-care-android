@@ -5,6 +5,9 @@ These docs describe **1.1.0**. Upgrading from `1.0.0-beta.6`? See
 [Upgrading](README.md#upgrading-from-100-beta6) first — initialization changed and several classes
 moved packages.
 
+For every public class and method, see the
+[API reference](https://feltclinic.github.io/felt-embedded-care-android/).
+
 ## Initialization
 Primary interaction with the SDK is mediated through the `EmbeddedCare.shared` singleton. Creating
 it is the companion's job.
