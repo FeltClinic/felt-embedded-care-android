@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>TabBarVisibilityManager</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    FeltEmbeddedCare
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.1.2        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":embeddedcare/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":embeddedcare/release"
+                                       data-filter=":embeddedcare/release"/>
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    FeltEmbeddedCare
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="FeltEmbeddedCare::clinic.felt.embeddedcare.features.tabbar/TabBarVisibilityManager///PointingToDeclaration//-181637594">
+  <div class="breadcrumbs"><a href="../../../index.html">FeltEmbeddedCare</a><span class="delimiter">/</span><a href="../index.html">clinic.felt.embeddedcare.features.tabbar</a><span class="delimiter">/</span><span class="current">TabBarVisibilityManager</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span>Visibility</span><wbr></wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">TabBarVisibilityManager</a></div><p class="paragraph">Decides whether your app's tab bar should be visible, from rules set by the web app and by your own code. Reach it through <code class="lang-kotlin">EmbeddedCare.shared.tabBarManager</code> and hide your tab bar whenever <a href="is-tab-bar-visible.html">isTabBarVisible</a> is <code class="lang-kotlin">false</code>.</p><p class="paragraph">Each rule is keyed by a reason. The highest priority rule wins, the newest among equals, and with no rules at all the tab bar is visible.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1814011228%2FConstructors%2F-181637594" anchor-label="TabBarVisibilityManager" id="-1814011228%2FConstructors%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tab-bar-visibility-manager.html"><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span>Visibility</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1814011228%2FConstructors%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1889911159%2FProperties%2F-181637594" anchor-label="isTabBarVisible" id="1889911159%2FProperties%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-tab-bar-visible.html"><span>is</span><wbr></wbr><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Visible</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1889911159%2FProperties%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-tab-bar-visible.html">isTabBarVisible</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/State.html">State</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Whether the tab bar should be visible, as Compose <a href="https://developer.android.com/reference/kotlin/androidx/compose/runtime/State.html">State</a> so reading it recomposes on change.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-880127002%2FFunctions%2F-181637594" anchor-label="clearAllReasons" id="-880127002%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-all-reasons.html"><span>clear</span><wbr></wbr><span>All</span><wbr></wbr><span><span>Reasons</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-880127002%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="clear-all-reasons.html"><span class="token function">clearAllReasons</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Removes every rule, which makes the tab bar visible.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="654165107%2FFunctions%2F-181637594" anchor-label="hideTabBarForFullScreenExperience" id="654165107%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hide-tab-bar-for-full-screen-experience.html"><span>hide</span><wbr></wbr><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span>For</span><wbr></wbr><span>Full</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Experience</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="654165107%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="hide-tab-bar-for-full-screen-experience.html"><span class="token function">hideTabBarForFullScreenExperience</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Hides the tab bar with a <a href="../-tab-bar-visibility-priority/-h-i-g-h/index.html">TabBarVisibilityPriority.HIGH</a> rule, until <a href="show-tab-bar-after-full-screen-experience.html">showTabBarAfterFullScreenExperience</a> removes it. The SDK doesn't call this itself: an experience it presents covers your tab bar instead.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-92901563%2FFunctions%2F-181637594" anchor-label="removeVisibilityReason" id="-92901563%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-visibility-reason.html"><span>remove</span><wbr></wbr><span>Visibility</span><wbr></wbr><span><span>Reason</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-92901563%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="remove-visibility-reason.html"><span class="token function">removeVisibilityReason</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">reason<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Removes the rule for <a href="remove-visibility-reason.html">reason</a>, if there is one.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1484809353%2FFunctions%2F-181637594" anchor-label="setTabBarVisibility" id="-1484809353%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-tab-bar-visibility.html"><span>set</span><wbr></wbr><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Visibility</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1484809353%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-tab-bar-visibility.html"><span class="token function">setTabBarVisibility</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">visible<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">reason<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">priority<span class="token operator">: </span><a href="../-tab-bar-visibility-priority/index.html">TabBarVisibilityPriority</a><span class="token operator"> = </span>TabBarVisibilityPriority.NORMAL</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds or replaces the rule for <a href="set-tab-bar-visibility.html">reason</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1823912453%2FFunctions%2F-181637594" anchor-label="showTabBarAfterFullScreenExperience" id="-1823912453%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="show-tab-bar-after-full-screen-experience.html"><span>show</span><wbr></wbr><span>Tab</span><wbr></wbr><span>Bar</span><wbr></wbr><span>After</span><wbr></wbr><span>Full</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Experience</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1823912453%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="show-tab-bar-after-full-screen-experience.html"><span class="token function">showTabBarAfterFullScreenExperience</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Removes the rule <a href="hide-tab-bar-for-full-screen-experience.html">hideTabBarForFullScreenExperience</a> set.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2026 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

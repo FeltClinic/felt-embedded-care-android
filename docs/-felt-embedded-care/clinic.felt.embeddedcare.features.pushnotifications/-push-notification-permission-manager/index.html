@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PushNotificationPermissionManager</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    FeltEmbeddedCare
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.1.2        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":embeddedcare/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":embeddedcare/release"
+                                       data-filter=":embeddedcare/release"/>
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    FeltEmbeddedCare
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="FeltEmbeddedCare::clinic.felt.embeddedcare.features.pushnotifications/PushNotificationPermissionManager///PointingToDeclaration//-181637594">
+  <div class="breadcrumbs"><a href="../../../index.html">FeltEmbeddedCare</a><span class="delimiter">/</span><a href="../index.html">clinic.felt.embeddedcare.features.pushnotifications</a><span class="delimiter">/</span><span class="current">PushNotificationPermissionManager</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Push</span><wbr></wbr><span>Notification</span><wbr></wbr><span>Permission</span><wbr></wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">PushNotificationPermissionManager</a></div><p class="paragraph">Manages push notification permissions for Android</p><p class="paragraph">Handles runtime permission requests (Android 13+), permission state tracking, and provides UI for requesting permissions with appropriate messaging.</p><p class="paragraph">Reach it through <code class="lang-kotlin">EmbeddedCare.shared.pushNotifications</code>. The SDK configures it during <code class="lang-kotlin">EmbeddedCare.initialize</code>, provided <code class="lang-kotlin">EmbeddedCare.prepareActivity</code> ran in <code class="lang-kotlin">onCreate</code>.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">val permissions = EmbeddedCare.shared.pushNotifications<br>if (permissions.currentState.value == PushNotificationPermissionManager.PermissionState.NOT_DETERMINED) {<br>    permissions.requestPermissions(PushNotificationPermissionManager.RequestTiming.USER_INITIATED)<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="658429658%2FConstructors%2F-181637594" anchor-label="PushNotificationPermissionManager" id="658429658%2FConstructors%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-push-notification-permission-manager.html"><span>Push</span><wbr></wbr><span>Notification</span><wbr></wbr><span>Permission</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="658429658%2FConstructors%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="926175258%2FClasslikes%2F-181637594" anchor-label="Companion" id="926175258%2FClasslikes%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="926175258%2FClasslikes%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div><div class="brief "><p class="paragraph">Holds the process-wide <a href="-companion/shared.html">shared</a> instance.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="725225508%2FClasslikes%2F-181637594" anchor-label="PermissionState" id="725225508%2FClasslikes%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-permission-state/index.html"><span>Permission</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725225508%2FClasslikes%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-permission-state/index.html">PermissionState</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-permission-state/index.html">PushNotificationPermissionManager.PermissionState</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents the current notification permission state</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1228491379%2FClasslikes%2F-181637594" anchor-label="RequestTiming" id="-1228491379%2FClasslikes%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-request-timing/index.html"><span>Request</span><wbr></wbr><span><span>Timing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1228491379%2FClasslikes%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-request-timing/index.html">RequestTiming</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-request-timing/index.html">PushNotificationPermissionManager.RequestTiming</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Timing context for permission requests - affects messaging and behavior</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1630148273%2FProperties%2F-181637594" anchor-label="currentState" id="-1630148273%2FProperties%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="current-state.html"><span>current</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1630148273%2FProperties%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="current-state.html">currentState</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/StateFlow///PointingToDeclaration/">StateFlow</span><span class="token operator">&lt;</span><a href="-permission-state/index.html">PushNotificationPermissionManager.PermissionState</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The current permission state. Refreshed whenever the configured activity resumes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1835334381%2FProperties%2F-181637594" anchor-label="isCheckingPermissions" id="-1835334381%2FProperties%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-checking-permissions.html"><span>is</span><wbr></wbr><span>Checking</span><wbr></wbr><span><span>Permissions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1835334381%2FProperties%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-checking-permissions.html">isCheckingPermissions</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/StateFlow///PointingToDeclaration/">StateFlow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph"><code class="lang-kotlin">true</code> while <a href="refresh-permission-state.html">refreshPermissionState</a> is reading the permission state from the system.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-514311968%2FFunctions%2F-181637594" anchor-label="addStateChangeHandler" id="-514311968%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-state-change-handler.html"><span>add</span><wbr></wbr><span>State</span><wbr></wbr><span>Change</span><wbr></wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-514311968%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-state-change-handler.html"><span class="token function">addStateChangeHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="-permission-state/index.html">PushNotificationPermissionManager.PermissionState</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a></div><div class="brief "><p class="paragraph">Add a handler for permission state changes</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-46926289%2FFunctions%2F-181637594" anchor-label="cleanup" id="-46926289%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cleanup.html"><span><span>cleanup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-46926289%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="cleanup.html"><span class="token function">cleanup</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Clean up resources when done with the manager</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1349421917%2FFunctions%2F-181637594" anchor-label="configure" id="-1349421917%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="configure.html"><span><span>configure</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1349421917%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="configure.html"><span class="token function">configure</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/activity/ComponentActivity.html">ComponentActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Binds the manager to <a href="configure.html">activity</a> and refreshes <a href="current-state.html">currentState</a>. <code class="lang-kotlin">EmbeddedCare.initialize</code> calls this for you, so you don't need to.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="620875611%2FFunctions%2F-181637594" anchor-label="getActionTitle" id="620875611%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-action-title.html"><span>get</span><wbr></wbr><span>Action</span><wbr></wbr><span><span>Title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="620875611%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-action-title.html"><span class="token function">getActionTitle</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get action title for current permission state</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1223027609%2FFunctions%2F-181637594" anchor-label="getMessage" id="-1223027609%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-message.html"><span>get</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1223027609%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-message.html"><span class="token function">getMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">timing<span class="token operator">: </span><a href="-request-timing/index.html">PushNotificationPermissionManager.RequestTiming</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Get user-friendly message for current permission state</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="568251727%2FFunctions%2F-181637594" anchor-label="openNotificationSettings" id="568251727%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="open-notification-settings.html"><span>open</span><wbr></wbr><span>Notification</span><wbr></wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="568251727%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="open-notification-settings.html"><span class="token function">openNotificationSettings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Open system settings to allow user to enable notifications</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1719262647%2FFunctions%2F-181637594" anchor-label="presentPermissionRequest" id="-1719262647%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../clinic.felt.embeddedcare.features.pushnotifications.ui/present-permission-request.html"><span>present</span><wbr></wbr><span>Permission</span><wbr></wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1719262647%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">PushNotificationPermissionManager</a><span class="token punctuation">.</span><a href="../../clinic.felt.embeddedcare.features.pushnotifications.ui/present-permission-request.html"><span class="token function">presentPermissionRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/app/Activity.html">Activity</a><span class="token punctuation">, </span></span><span class="parameter ">timing<span class="token operator">: </span><a href="-request-timing/index.html">PushNotificationPermissionManager.RequestTiming</a><span class="token operator"> = </span>RequestTiming.USER_INITIATED<span class="token punctuation">, </span></span><span class="parameter ">onPermissionGranted<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}<span class="token punctuation">, </span></span><span class="parameter ">onPermissionDenied<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}<span class="token punctuation">, </span></span><span class="parameter ">onDismissed<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Presents a bottom sheet explaining why notifications are wanted, before the system prompt.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1140296352%2FFunctions%2F-181637594" anchor-label="refreshPermissionState" id="1140296352%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="refresh-permission-state.html"><span>refresh</span><wbr></wbr><span>Permission</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1140296352%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="refresh-permission-state.html"><span class="token function">refreshPermissionState</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Refresh the current permission state from the system</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1319615988%2FFunctions%2F-181637594" anchor-label="registerLauncher" id="-1319615988%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register-launcher.html"><span>register</span><wbr></wbr><span><span>Launcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1319615988%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-launcher.html"><span class="token function">registerLauncher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/activity/ComponentActivity.html">ComponentActivity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configure the permission manager with an activity Must be called before requesting permissions</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1150107905%2FFunctions%2F-181637594" anchor-label="removeStateChangeHandler" id="-1150107905%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-state-change-handler.html"><span>remove</span><wbr></wbr><span>State</span><wbr></wbr><span>Change</span><wbr></wbr><span><span>Handler</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1150107905%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="remove-state-change-handler.html"><span class="token function">removeStateChangeHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">token<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Remove a state change handler</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777590027%2FFunctions%2F-181637594" anchor-label="requestPermissions" id="1777590027%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-permissions.html"><span>request</span><wbr></wbr><span><span>Permissions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777590027%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="request-permissions.html"><span class="token function">requestPermissions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">timing<span class="token operator">: </span><a href="-request-timing/index.html">PushNotificationPermissionManager.RequestTiming</a><span class="token operator"> = </span>RequestTiming.USER_INITIATED</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-permission-state/index.html">PushNotificationPermissionManager.PermissionState</a></div><div class="brief "><p class="paragraph">Request notification permissions</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1839444766%2FFunctions%2F-181637594" anchor-label="shouldRequestPermissions" id="1839444766%2FFunctions%2F-181637594" data-filterable-set=":embeddedcare/release"></a>
+          <div class="table-row" data-filterable-current=":embeddedcare/release" data-filterable-set=":embeddedcare/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="should-request-permissions.html"><span>should</span><wbr></wbr><span>Request</span><wbr></wbr><span><span>Permissions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1839444766%2FFunctions%2F-181637594"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":embeddedcare/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="should-request-permissions.html"><span class="token function">shouldRequestPermissions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">timing<span class="token operator">: </span><a href="-request-timing/index.html">PushNotificationPermissionManager.RequestTiming</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Check if we should request permissions based on current state and timing</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2026 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

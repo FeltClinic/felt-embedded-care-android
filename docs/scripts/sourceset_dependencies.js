@@ -1,0 +1,1 @@
+sourceset_dependencies='{":embeddedcare/debug":[],":embeddedcare/main":[],":embeddedcare/release":[]}'
