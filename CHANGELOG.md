@@ -43,7 +43,7 @@ implementation("clinic.felt:embeddedcare:1.2.0")
 - **SDK experiences are no longer on the fragment back stack.** System back still closes them. If your app counted back stack entries to detect an SDK experience, it will no longer see one.
 - **Other non-web links.** Besides `tel:`, `mailto:` and `sms:`, any other non-web link the user taps in the experience (for example `geo:` or an app's own scheme) is handed to the app that handles it. When no app can open a link, a short message appears. Its text comes from these string resources, which you can override to translate: `felt_no_phone_app`, `felt_no_email_app`, `felt_no_messaging_app` and `felt_no_app_for_link`.
 - **Badge polling pauses in the background.** While your app is in the background, badge updates stop and `BadgeManager.isPolling` is `false`. They resume when your app returns, so don't restart polling yourself.
-- **Badge handlers always register.** `addStateChangeHandler` now always registers your handler. Before, it returned an id without registering anything when badging was off for your app. A handler you add before badging turns on is now called once it does.
+- **Badge handlers always register.** `addStateChangeHandler` now always registers your handler. Before, it returned an id without registering anything when badging was off for your app.
 - **`kotlinx-coroutines-android`** is now an `api` dependency, so `StateFlow` resolves without your app declaring it.
 - **R8.** The SDK ships consumer keep rules that keep the names (not the code) of the SDK's classes and of Capacitor, so the SDK's crash reports stay readable in minified apps. Unused classes are still removed.
 
