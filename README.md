@@ -4,7 +4,8 @@ Felt offers a seamless telehealth experience inside health apps. Our platform ha
 ## Getting Started
 The SDK is published on [Maven Central](https://central.sonatype.com/artifact/clinic.felt/embeddedcare).
 
-> These docs describe **1.1.2**. If you are upgrading from `1.0.0-beta.6`, initialization has
+> These docs describe **1.2.0**. Upgrading from `1.1.2`? See [Upgrading from 1.1.2](#upgrading-from-112).
+> If you are upgrading from `1.0.0-beta.6`, initialization has
 > changed and several classes have moved packages: see [Upgrading from 1.0.0-beta.6](#upgrading-from-100-beta6).
 > Pin an explicit version rather than tracking the latest.
 
@@ -26,7 +27,7 @@ dependencyResolutionManagement {
 
 // app/build.gradle.kts
 dependencies {
-    implementation("clinic.felt:embeddedcare:1.1.2")
+    implementation("clinic.felt:embeddedcare:1.2.0")
 }
 ```
 
@@ -56,6 +57,31 @@ Component(experience = ComponentExperience.DismissableCallToAction)
 
 🎉 By working with Felt, we will populate these views with a customized, white-labeled experience
 that will delight your users.
+
+## Upgrading from 1.1.2
+
+`1.2.0` changes no existing API. Check these two cases; if neither applies to your app, there is
+nothing to change. [CHANGELOG.md](CHANGELOG.md) lists everything else.
+
+**If your app includes `sentry-android`** (directly, or through another library) **and your manifest
+has no `io.sentry.dsn`**, add this inside `<application>`, as
+[Sentry's manual setup guide](https://docs.sentry.io/platforms/android/manual-setup/) requires:
+
+```xml
+<meta-data android:name="io.sentry.auto-init" android:value="false" />
+```
+
+`1.1.2` turned off `sentry-android`'s automatic start in every app, so an app could work without this
+line. `1.2.0` no longer changes your Sentry settings, which matches the iOS SDK. Without the line,
+Sentry tries to start at launch with no DSN and the app crashes on every launch. To check whether
+your app includes `sentry-android`, run `./gradlew :app:dependencies` and search for it.
+
+**If your app shows the notification permission prompt from more than one activity**, call
+`EmbeddedCare.prepareActivity(this)` in `onCreate` of each of them. The SDK now asks from the activity
+currently on screen, and shows no prompt if that activity didn't call it.
+
+Optionally, remove any manifest workaround you added for the SDK's `FileProvider`. The SDK now
+declares its own provider class, so it no longer conflicts with yours.
 
 ## Upgrading from 1.0.0-beta.6
 

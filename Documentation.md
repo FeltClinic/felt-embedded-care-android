@@ -4,9 +4,10 @@ This guide takes an Android app from no SDK to a working care experience: instal
 the user in, show care screens, and handle deep links and push. It ends with what differs from the
 iOS integration, for teams shipping both.
 
-It describes **1.1.2**, and every API named here is public in that version. For every public class
+It describes **1.2.0**, and every API named here is public in that version. For every public class
 and method, see the [API reference](https://feltclinic.github.io/felt-embedded-care-android/).
-Upgrading from `1.0.0-beta.6`? Read [Upgrading](README.md#upgrading-from-100-beta6) first:
+Upgrading from `1.1.2`? Read [Upgrading from 1.1.2](README.md#upgrading-from-112) first: one Sentry setup
+can crash at launch. Upgrading from `1.0.0-beta.6`? Read [Upgrading](README.md#upgrading-from-100-beta6):
 initialization changed and several classes moved packages.
 
 ## Requirements
@@ -43,11 +44,11 @@ dependencyResolutionManagement {
 ```kotlin
 // app/build.gradle.kts
 dependencies {
-    implementation("clinic.felt:embeddedcare:1.1.2")
+    implementation("clinic.felt:embeddedcare:1.2.0")
 }
 ```
 
-The current version is **1.1.2**. At runtime, `EmbeddedCare.VERSION_NAME` reports the version you
+The current version is **1.2.0**. At runtime, `EmbeddedCare.VERSION_NAME` reports the version you
 are running.
 
 **R8 / ProGuard:** no rules are needed from you. The parts of the SDK that are reached by reflection
@@ -476,7 +477,9 @@ EmbeddedCare.shared.pushNotifications.presentPermissionRequest(
 )
 ```
 
-Call it from the activity that called `prepareActivity` (section 3, rule 1).
+The SDK shows the prompt from the activity currently on screen, and only if that activity called
+`EmbeddedCare.prepareActivity(this)` in `onCreate`. If it didn't, no prompt appears and the SDK logs an
+error. Call `prepareActivity` in every activity that can show the prompt.
 
 ## 7. Lifecycle
 
@@ -509,10 +512,18 @@ Some care screens ask for your tab bar to be hidden. In Compose, read
 `EmbeddedCare.shared.tabBarManager.isTabBarVisible` (a `State<Boolean>`) and hide your navigation bar
 when it is `false`.
 
-In an app built only with Views, nothing delivers changes to that state, so a `snapshotFlow` over it
-emits once and then stays silent. Read it from a composition, or register a global snapshot write
-observer (`Snapshot.registerGlobalWriteObserver`) that posts `Snapshot.sendApplyNotifications()` to
-the main thread.
+In an app built with Views, collect `tabBarManager.visibility`, a `StateFlow<Boolean>` that always
+holds the same value:
+
+```kotlin
+lifecycleScope.launch {
+    repeatOnLifecycle(Lifecycle.State.STARTED) {
+        EmbeddedCare.shared.tabBarManager.visibility.collect { visible ->
+            bottomNavigationView.isVisible = visible
+        }
+    }
+}
+```
 
 ### Tab badges
 
@@ -526,6 +537,10 @@ EmbeddedCare.shared.takeOverBadging(this)
 
 It finds your bottom navigation bar and badges the care tab. Pass an
 `AutomaticTabBadging.Configuration` as the second argument to change the badge style.
+
+To draw the badge yourself, read `EmbeddedCare.shared.badges`: `isBadgeVisible`, `badgeCount` and
+`badgeType`, the same names as in the iOS SDK. Register `addStateChangeHandler` to hear about changes.
+Badge updates pause while your app is in the background and resume when it returns.
 
 ## 9. Errors
 
@@ -564,13 +579,6 @@ The two SDKs share their concepts and most names. These are the places where And
 
 ## Known issues
 
-- **Apps that depend on Sentry Android 8.x:** `EmbeddedCare.initialize` currently fails with
-  `IllegalArgumentException: You are running Android. Please, use SentryAndroid.init`. A fix is in
-  progress; talk to Felt before integrating if your app uses Sentry 8.
-- **Apps that declare `androidx.core.content.FileProvider` themselves:** the SDK declares one too,
-  and the manifest merger reports a conflict. Until the SDK ships its own subclass, declare your
-  provider with a subclass of `FileProvider` (for example `class AppFileProvider : FileProvider()`)
-  instead of `FileProvider` itself.
 - **Restoring after Android ends your app's process:** if Android ends your app's process in the
   background while an SDK screen is open, reopening the app restores that screen before the SDK has
   started, and the app crashes. Rotation and ordinary backgrounding are not affected, because the
