@@ -18,12 +18,12 @@ visits, with a few lines of code.
 
 ## Documentation
 
-The docs live in **two places**. Most people need the guide first.
+The docs live in **two places**:
 
-| | What it is | Read it when |
+| Where | What's there | Read it when |
 |---|---|---|
-| 📘 **[Integration guide](Documentation.md)** | Step by step: install, initialize, sign the user in, show care screens, deep links and push, lifecycle, and how Android differs from iOS | You are adding the SDK to your app |
-| 📚 **[API reference](https://feltclinic.github.io/felt-embedded-care-android/)** | Every public class, function and property, with its documentation | You need the details of one specific API |
+| 📘 **Here, on GitHub:** [Documentation.md](Documentation.md) | The full integration guide: install, initialize, sign the user in, show care screens, deep links and push, lifecycle, and how Android differs from iOS | You are adding the SDK to your app. Start here |
+| 📚 **The docs site:** [feltclinic.github.io/felt-embedded-care-android](https://feltclinic.github.io/felt-embedded-care-android/) | A short setup guide, then the API reference: every public class, function and property, with its documentation | You need the details of one specific API |
 
 ## Getting started
 
